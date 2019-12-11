@@ -147,11 +147,11 @@ RSpec.describe RocksController, type: :controller do
       expect(response).to redirect_to new_user_session_path
     end
 
-    it "should successfully creat a new rock in the database" do
+    it "should successfully create a new rock in the database" do
       user = FactoryBot.create(:user)
       sign_in user
 
-      post :create, params: { rock: { name: 'Rock' } }
+      post :create, params: { rock: { name: 'Rock', picture: fixture_file_upload("/picture.png", 'image/png') } }
       expect(response).to redirect_to root_path
 
       rock = Rock.last
