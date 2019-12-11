@@ -6,6 +6,7 @@ class RocksController < ApplicationController
   end
 
   def index
+    @rocks = Rock.all
   end
 
   def show
@@ -51,7 +52,7 @@ class RocksController < ApplicationController
   private
 
   def rock_params
-    params.require(:rock).permit(:name, :address, :description, :message)
+    params.require(:rock).permit(:name, :address, :picture, :description, :message)
   end
 
   def render_not_found(status=:not_found)
