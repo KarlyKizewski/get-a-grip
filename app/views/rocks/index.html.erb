@@ -1,1 +1,11 @@
 <h1>Rocks!</h1>
+<% @rocks.each do |rock| %>
+  <div>
+    <h1><%= rock.name %></h1><br />
+    <i><%= rock.address %></i><br />
+    <p><%= rock.description %></p><br />
+    <p><%= rock.message %></p><br />
+  </div>
+
+  <hr />
+<% end %>
