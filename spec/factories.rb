@@ -6,4 +6,9 @@ FactoryBot.define do
     password { "secretPassword" }
     password_confirmation { "secretPassword" }
   end
+
+  factory :rock do
+    name { "rock" }
+    association :user
+  end
 end

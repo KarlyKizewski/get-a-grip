@@ -1,11 +1,18 @@
 class RocksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
-  
+
   def new
     @rock = Rock.new
   end
 
   def index
+  end
+
+  def show
+    @rock = Rock.find_by_id(params[:id])
+    if @rock.blank?
+      render plain: 'Not Found', status: :not_found
+    end
   end
 
   def create
