@@ -1,6 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe RocksController, type: :controller do
+
+  describe "rocks#edit action" do
+    it "should successfully show the edit form if the rock is found" do
+      rock = FactoryBot.create(:rock)
+      get :edit, params: { id: rock.id }
+      expect(response).to have_http_status(:success)
+    end
+
+    it "should return a 404 error message if the rock is not found" do
+      get :edit, params: { id: 'Climb' }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
   describe "rocks#show action" do
     it "should successfully show the page if the rock is found" do
       rock = FactoryBot.create(:rock)

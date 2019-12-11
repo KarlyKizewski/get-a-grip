@@ -24,6 +24,13 @@ class RocksController < ApplicationController
     end
   end
 
+  def edit
+    @rock = Rock.find_by_id(params[:id])
+    if @rock.blank?
+      render plain: 'Not Found', status: :not_found
+    end
+  end
+
   private
 
   def rock_params
