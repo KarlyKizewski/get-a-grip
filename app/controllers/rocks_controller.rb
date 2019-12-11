@@ -1,4 +1,6 @@
 class RocksController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+  
   def new
     @rock = Rock.new
   end

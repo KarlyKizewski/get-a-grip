@@ -9,6 +9,11 @@ RSpec.describe RocksController, type: :controller do
   end
 
   describe "rocks#new action" do
+    it "should require users to be logged in" do
+      get :new
+      expect(response).to redirect_to new_user_session_path
+    end
+
     it "should successfully show the new form" do
       user = User.create(
         email:                 'fakeuser@gmail.com',
@@ -23,6 +28,12 @@ RSpec.describe RocksController, type: :controller do
   end
 
   describe "rocks#create action" do
+
+    it "should require users to be logged in" do
+      post :create, params: { rock: { name: 'Rock' } }
+      expect(response).to redirect_to new_user_session_path
+    end
+
     it "should successfully creat a new rock in the database" do
       user = User.create(
         email:                 'fakeuser@gmail.com',
