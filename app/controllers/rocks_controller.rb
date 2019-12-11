@@ -7,7 +7,7 @@ class RocksController < ApplicationController
   end
 
   def create
-    @rock = Rock.create(rock_params)
+    @rock = current_user.rocks.create(rock_params)
     if @rock.valid?
       redirect_to root_path
     else
