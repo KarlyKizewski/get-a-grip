@@ -1,5 +1,5 @@
 class RocksController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def new
     @rock = Rock.new
@@ -25,13 +25,14 @@ class RocksController < ApplicationController
   def edit
     @rock = Rock.find_by_id(params[:id])
     return render_not_found if @rock.blank?
+    return render_not_found(:forbidden) if @rock.user != current_user
   end
 
   def update
     @rock = Rock.find_by_id(params[:id])
     return render_not_found if @rock.blank?
+    return render_not_found(:forbidden) if @rock.user != current_user
     @rock.update_attributes(rock_params)
-
     if @rock.valid?
       redirect_to root_path
     else
@@ -42,6 +43,7 @@ class RocksController < ApplicationController
   def destroy
     @rock = Rock.find_by_id(params[:id])
     return render_not_found if @rock.blank?
+    return render_not_found(:forbidden) if @rock.user != current_user
     @rock.destroy
     redirect_to root_path
   end
@@ -52,7 +54,7 @@ class RocksController < ApplicationController
     params.require(:rock).permit(:name, :address, :description, :message)
   end
 
-  def render_not_found
-    render plain: 'Not Found', status: :not_found
+  def render_not_found(status=:not_found)
+    render plain: "#{status.to_s.titleize}", status: status
   end
 end
