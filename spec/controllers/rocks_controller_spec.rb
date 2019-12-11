@@ -2,6 +2,29 @@ require 'rails_helper'
 
 RSpec.describe RocksController, type: :controller do
 
+  describe "rocks#update action" do
+    it "should allow users to successfully update rocks" do
+      rock = FactoryBot.create(:rock, name: "Initial Value")
+      patch :update, params: { id: rock.id, rock: { name: 'Changed' } }
+      expect(response).to redirect_to root_path
+      rock.reload
+      expect(rock.name).to eq "Changed"
+    end
+
+    it "should have http 404 if the gram cannot be found" do
+      patch :update, params: { id: "Not true", rock: { name: 'Changed' } }
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it "should render the edit form with an http status of unprocessable entity" do
+      rock = FactoryBot.create(:rock, name: "Initial Value")
+      patch :update, params: { id: rock.id, rock: { name: '' } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      rock.reload
+      expect(rock.name).to eq "Initial Value"
+    end
+  end
+
   describe "rocks#edit action" do
     it "should successfully show the edit form if the rock is found" do
       rock = FactoryBot.create(:rock)

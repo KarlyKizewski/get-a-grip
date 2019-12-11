@@ -10,9 +10,7 @@ class RocksController < ApplicationController
 
   def show
     @rock = Rock.find_by_id(params[:id])
-    if @rock.blank?
-      render plain: 'Not Found', status: :not_found
-    end
+    return render_not_found if @rock.blank?
   end
 
   def create
@@ -26,8 +24,18 @@ class RocksController < ApplicationController
 
   def edit
     @rock = Rock.find_by_id(params[:id])
-    if @rock.blank?
-      render plain: 'Not Found', status: :not_found
+    return render_not_found if @rock.blank?
+  end
+
+  def update
+    @rock = Rock.find_by_id(params[:id])
+    return render_not_found if @rock.blank?
+    @rock.update_attributes(rock_params)
+
+    if @rock.valid?
+      redirect_to root_path
+    else
+      return render :edit, status: :unprocessable_entity
     end
   end
 
@@ -35,5 +43,9 @@ class RocksController < ApplicationController
 
   def rock_params
     params.require(:rock).permit(:name, :address, :description, :message)
+  end
+
+  def render_not_found
+    render plain: 'Not Found', status: :not_found
   end
 end
