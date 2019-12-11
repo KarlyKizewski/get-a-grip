@@ -8,7 +8,11 @@ class RocksController < ApplicationController
 
   def create
     @rock = Rock.create(rock_params)
-    redirect_to root_path
+    if @rock.valid?
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private

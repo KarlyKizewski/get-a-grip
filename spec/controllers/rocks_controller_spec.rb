@@ -23,5 +23,11 @@ RSpec.describe RocksController, type: :controller do
       rock = Rock.last
       expect(rock.name).to eq("Rock")
     end
+
+    it "should probably deal with validation errors" do
+      post :create, params: { rock: { name: '' } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(Rock.count).to eq 0
+    end
   end
 end
