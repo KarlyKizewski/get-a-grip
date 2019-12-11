@@ -39,6 +39,13 @@ class RocksController < ApplicationController
     end
   end
 
+  def destroy
+    @rock = Rock.find_by_id(params[:id])
+    return render_not_found if @rock.blank?
+    @rock.destroy
+    redirect_to root_path
+  end
+
   private
 
   def rock_params

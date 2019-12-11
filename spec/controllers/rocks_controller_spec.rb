@@ -1,6 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe RocksController, type: :controller do
+  describe "rocks#destroy action" do
+    it "should allow a user to destroy rocks" do
+      rock = FactoryBot.create(:rock)
+      delete :destroy, params: { id: rock.id }
+      expect(response).to redirect_to root_path
+      rock = Rock.find_by_id(rock.id)
+      expect(rock).to eq nil
+    end
+
+    it "should return a 404 message if we cannot find a rock with that id" do
+      delete :destroy, params: { id: 'Truffles' }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 
   describe "rocks#update action" do
     it "should allow users to successfully update rocks" do
