@@ -14,6 +14,34 @@
     <% end %>
   </div>
   <br class="clear-fix" />
+
+   
+<% if @rock.latitude.present? && @rock.longitude.present? %>
+  <script>
+
+    function initMap() {
+      var myLatLng = {lat: <%= @rock.latitude%>, lng: <%= @rock.longitude %>};
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: myLatLng
+      });
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Hello World!'
+      });
+    }
+  </script>
+
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8irq3R5Rv4kuf-tRA0RH0STpKMYe-O3M&callback=initMap">
+  </script>
+
+  <div id="map"></div>
+<% end %>
+
   <div class="comments">
     <h3>Comments</h3>
     <% @rock.comments.each do |comment| %>
