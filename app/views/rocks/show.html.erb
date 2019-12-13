@@ -1,2 +1,29 @@
 <br /><br /><br />
-<h1><%= @rock.inspect %></h1>
+  <div>
+    <h1><%= @rock.name %></h1><br />
+    <i><%= @rock.address %></i><br />
+    <%= image_tag @rock.picture.url %>
+    <p><%= @rock.description %></p><br />
+    <p><%= @rock.message %></p><br />
+  </div>
+  <div class="float-right">
+    <% if current_user && current_user == @rock.user %>
+      <%= link_to 'Edit', edit_rock_path(@rock) %>
+      <%= link_to 'Destroy', rock_path(@rock), method: :delete, data: {confirm: 'Are you sure?'} %>
+    <% end %>
+  </div>
+  <br class="clear-fix" />
+  <div class="comments">
+    <h3>Comments</h3>
+    <% @rock.comments.each do |comment| %>
+      <div class="comment" >
+        <span><%= @comment.user.email %></span>
+        <%= @comment.message %>
+      </div>
+    <% end %>
+    <h4>Add a comment</h4>
+    <%= simple_form_for Comment.new, url: rock_comments_path(@rock) do |f| %>
+      <%= f.input :message %>
+      <%= f.submit 'Add Comment' %>
+    <% end %>
+  </div>
