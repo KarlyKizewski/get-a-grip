@@ -1,8 +1,7 @@
 <br /><br /><br />
 <% @rocks.each do |rock| %>
   <div>
-    
-    <h1><%= rock.name %></h1><br />
+    <h1><%= link_to rock.name, rock_path(rock) %></h1>
     <i><%= rock.address %></i><br />
     <%= image_tag rock.picture.url %>
     <p><%= rock.description %></p><br />
