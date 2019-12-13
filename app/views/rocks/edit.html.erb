@@ -1,1 +1,10 @@
-<h1>Edit Rock</h1>
+<br /><br /><br />
+<h1>Edit Rock Log</h1>
+<%= simple_form_for @rock do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :picture %>
+  <%= f.input :description %>
+  <%= f.input :message %>
+  <%= f.submit 'Update!' %>
+<% end %>

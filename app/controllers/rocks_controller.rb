@@ -6,7 +6,7 @@ class RocksController < ApplicationController
   end
 
   def index
-    @rocks = Rock.all
+      @rocks = Rock.all
   end
 
   def show

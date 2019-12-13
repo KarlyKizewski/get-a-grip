@@ -11,38 +11,43 @@
 
   <body>
 
-        <nav class="navbar navbar-toggleable-md navbar-trans navbar-light bg-transparent">
+        <nav class="navbar navbar-toggleable-md navbar-trans navbar-light fixed-top bg-transparent">
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" href="#">Get a Grip</a>
+          <a class="navbar-brand" href="/">Grip</a>
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <% if current_user %>
+              Welcome, <%= current_user.email %>
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard">Climb Journal</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
+                <a class="nav-link" href="/users_sign_out">Sign Out</a>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <a class="nav-link" href="/users_sign_in">Sign In</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/users/sign_up">Sign Up</a>
+              </li>
+            <% end %>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/rocks/new">Log Your Climb</a>
               </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+
           </div>
         </nav>
 
-            <% if current_user %>
-              You're signed in as <%= current_user.email %>.
-              <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-            <% else %>
-              <%= link_to "Sign In", new_user_session_path %>
-              <%= link_to "Sign Up", new_user_registration_path %>
-            <% end %>
+        
             <% if notice.present? %>
               <p class="notice"><%= notice %></p>
             <% end %>
