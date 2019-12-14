@@ -1,24 +1,10 @@
-# README
+Grip
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Log and share your climbing moments. 
 
-Things you may want to cover:
+Write a description and personal message.
+Share the location for other's to try and 
+get a grip!
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is a Ruby on Rails application featuring 
+the Google Maps API, AWS S3, bootstrap and simple_form.
