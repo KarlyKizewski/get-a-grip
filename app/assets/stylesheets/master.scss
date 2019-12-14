@@ -16,7 +16,7 @@
   background-color: black;
   width: 75px;
   text-align: center;
-  margin-left: 175px;
+  
 }
 
 ul {
@@ -34,6 +34,10 @@ h1 {
 h3 {
   font-family: 'Girassol', cursive;
   font-size: 30px;
+}
+
+h2 {
+  font-family: 'Girassol', cursive;
 }
 
 h4 {
@@ -68,6 +72,10 @@ a:hover, a:visited, a:link, a:active
     color: black;
 }
 
+.navbar p {
+  font-size: 13px;
+}
+
 .btn {
   border-color: black;
   border-radius: 20px;
@@ -94,7 +102,7 @@ textarea {
 }
 
 span {
-  color: #73563f;
+  color: #4f733f;
 }
 
 .comments {

@@ -17,6 +17,7 @@
           </button>
           <a class="navbar-brand" href="/">G</a>
 
+
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-md-0">
             <% if current_user %>
@@ -31,15 +32,16 @@
             </ul>
 
           </div>
+          <p class="text-right">Grip all your experiences.</p>
         </nav>
 
         
             <% if notice.present? %>
-              <p class="notice"><%= notice %></p>
+              <p class="alert alert-info text-center"><%= notice %></p>
             <% end %>
 
             <% if alert.present? %>
-              <p class="alert"><%= alert %></p>
+              <p class="alert alert-danger text-center"><%= alert %></p>
             <% end %>
 
     <%= yield %>
