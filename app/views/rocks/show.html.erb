@@ -1,21 +1,23 @@
-<br /><br /><br />
-  <div>
-    <%= @rock.user.email %>
+<br /><br /><br /><br />
+  <div class="container col-8 offset-2">
+    <%= image_tag @rock.picture.url, class: 'd-block img-fluid' %>
+    <div class="formy col-10 offset-1 text-right">
+    <span><%= @rock.user.email %></span>
     <h1><%= @rock.name %></h1><br />
     <i><%= @rock.address %></i><br />
-    <%= image_tag @rock.picture.url %>
     <p><%= @rock.description %></p><br />
-    <p><%= @rock.message %></p><br />
+    <i><%= @rock.message %></i><br />
   </div>
-  <div class="float-right">
+  <ul class="text-center">
     <% if current_user && current_user == @rock.user %>
-      <%= link_to 'Edit', edit_rock_path(@rock) %>
-      <%= link_to 'Destroy', rock_path(@rock), method: :delete, data: {confirm: 'Are you sure?'} %>
+      <li><%= link_to 'Edit', edit_rock_path(@rock) %></li>
+      <li><%= link_to 'Destroy', rock_path(@rock), method: :delete, data: {confirm: 'Are you sure?'} %></li>
     <% end %>
-  </div>
+  </ul>
+  <br />
   <br class="clear-fix" />
+  <hr />
 
-   
 <% if @rock.latitude.present? && @rock.longitude.present? %>
   <script>
 
@@ -42,6 +44,9 @@
   <div id="map"></div>
 <% end %>
 
+<br />
+<hr />
+
   <div class="comments">
     <h3>Comments</h3>
     <% @rock.comments.each do |comment| %>
@@ -50,9 +55,10 @@
         <%= comment.message %>
       </div>
     <% end %>
-    <h4>Add a comment</h4>
+    <h4>Add a Comment:</h4>
     <%= simple_form_for Comment.new, url: rock_comments_path(@rock) do |f| %>
       <%= f.input :message %>
-      <%= f.submit 'Add Comment' %>
+      <%= f.submit 'GRIP' %>
     <% end %>
   </div>
+  <br /><br />

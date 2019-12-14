@@ -15,33 +15,19 @@
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" href="/">Grip</a>
+          <a class="navbar-brand" href="/">G</a>
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-md-0">
             <% if current_user %>
-              Welcome, <%= current_user.email %>
-              <li class="nav-item">
-                <a class="nav-link" href="/dashboard">Climb Journal</a>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/users_sign_out">Sign Out</a>
-              </li>
+              Welcome, <span><%= current_user.email %></span>
+                
+                <li class="nav-item"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+              <li class="nav-item"><%= link_to 'Add GRIP', new_rock_path %></li>
             <% else %>
-              <li class="nav-item">
-                <a class="nav-link" href="/users_sign_in">Sign In</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/users/sign_up">Sign Up</a>
-              </li>
+               <li class="nav-item"><%= link_to "Sign In", new_user_session_path %></li>
+                <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path %></li>
             <% end %>
-
-              <li class="nav-item">
-                <a class="nav-link" href="/rocks/new">Log Your Climb</a>
-              </li>
             </ul>
 
           </div>
